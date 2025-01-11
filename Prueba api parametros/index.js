@@ -8,10 +8,10 @@ for (let index = 0; index <= 44; index++) {
     opciones.innerHTML += `echo("<option value='${index}'>${index}</option>");`;
 
 }
+
 //Se RecuperaEl valor del select de HTML y se crea una funcion
 document.getElementById("options").addEventListener("change", function(){
     
-
     /*
     Se recupera la API y se le asigna a data
     Al final de la url se le agrega el valor escogido en el select de HTML
