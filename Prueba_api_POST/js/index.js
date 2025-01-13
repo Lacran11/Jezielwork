@@ -46,19 +46,26 @@ variable.addEventListener('submit', function (event){
         console.log(id);
     });
 
-
     console.log(JSON.stringify(entradas));
-    console.log(`ID: ${id} with regex:`, regex);
+    //console.log(`ID: ${entradas.id[2]} with regex:`, entradas.regex[2]);
 
 
-    entradas.forEach(({id, regex, error}) => {
-        const entrada = document.getElementById(id);
-        if (!regex.test(entrada.value.trim())) {
-            entradas.style.border = "3px solid red";//Le da color rojo al borde del input
-            const errormsg = document.createElement("small");  
-            errormsg.style.color = "red";
-            errormsg.innerText = error;
-            entrada.insertAdjacentElement("afterend",errormsg);
+    entradas.forEach((entradadata) => {
+
+        const entrada = document.getElementById(entradadata.id);
+        if (entrada) {
+
+            console.log(entradadata.id + entradadata.regex);
+            
+            if (!entradadata.regex.test(entrada.value.trim())) {
+    
+                entradas.style.border = "3px solid red";//Le da color rojo al borde del input
+                const errormsg = document.createElement("small");  
+                errormsg.style.color = "red";
+                errormsg.innerText = error;
+                entrada.insertAdjacentElement("afterend",errormsg);
+    
+            }
         }
         if (!esverdadero) {
             alert("Corrige todos los campos en rojo");
