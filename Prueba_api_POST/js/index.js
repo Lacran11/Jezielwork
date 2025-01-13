@@ -56,7 +56,7 @@ variable.addEventListener('submit', function (event){
         if (entrada) {
 
             console.log(entradadata.id + entradadata.regex);
-            
+
             if (!entradadata.regex.test(entrada.value.trim())) {
     
                 entradas.style.border = "3px solid red";//Le da color rojo al borde del input
@@ -73,49 +73,6 @@ variable.addEventListener('submit', function (event){
         }
         
     });
-    /*
-    let name = document.getElementById("nombre").value;
-    let apm = document.getElementById("apellidomat").value;
-    let app = document.getElementById("apellidopat").value;
-    let email = document.getElementById("correo").value;
-    let phone = document.getElementById("celular").value;
-    
-        if (!/^[a-zA-Z]{5,}$/.test(name)) {
-            alert('Porfavor inserta un nombre con al menos 5 letras ');
-            event.preventDefault(); // Prevent form submission
-            alert(JSON.stringify(name));
-        }        
-        */
-
-    
-    /*
-    const entradas = [
-        {id: "nombre"},
-        {id: "apellidomat"},
-        {id: "apellidopat"},
-        {id: "correo"},
-        {id: "celular"}
-    ];
-
-    let esverdadero = true;
-
-    entradas.forEach(({id}) =>{
-        const entradas = document.getElementById("id");
-        entradas.style.border = " ";
-    });
-    
-    entradas.forEach(({id}) =>{
-        if (!ientradas.value.trim()) {
-            entradas.style.border = "3px solid red";//Le da color rojo al borde del input
-            esverdadero = false;            
-        }
-    });
-
-    if (!esverdadero) {
-        alert("Porfavor llena todo los campos resaltados en rojo.");
-    }
-    */
-
 
     //Asignacion de valores y creacion del payload
     const data = {
@@ -150,16 +107,3 @@ variable.addEventListener('submit', function (event){
     .then((json) => console.log(json));
 
 });
-
-
-
-
-
-/*
-fetch('http://192.168.1.155/v4/Portal/insertUserPruebas')
-.then(response => response.json())
-.then(data => {
-
-
-})
-*/
