@@ -6,22 +6,22 @@
     
 
     <form action=""></form>
-    <title>Document</title>
+    <title>Insercion POST   </title>
 </head>
 <body>
     
     <form action="" id="insertar">
 
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre"><br>
+        <label for="nombre"  pattern="[a-zA-ZáéíóúÁÉÍÓÚ]+">Nombre:</label><br>
+        <input type="text" id="nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚ]+"><br>
         <label for="apellidomat">Apellido Materno:</label><br>
-        <input type="text" id="apellidomat"><br>
+        <input type="text" id="apellidomat" pattern="[a-zA-ZáéíóúÁÉÍÓÚ]+"><br>
         <label for="apellidopat">Apellido Paterno:</label><br>
-        <input type="text" id="apellidopat"><br>
+        <input type="text" id="apellidopat" pattern="[a-zA-ZáéíóúÁÉÍÓÚ]+"><br>
         <label for="correo">Correo Electronico</label><br>
-        <input type="email" id="correo"><br>
-        <label for="numero">Numero de Celular</label><br>
-        <input type="number" id="celular"><br><br><br>
+        <input type="email" id="correo" pattern="[a-zA-Z0-9@.]+"><br>
+        <label for="celular">Numero de Celular</label><br>
+        <input type="number" id="celular" pattern="[0-9]+"><br><br><br>
 
         <input type="submit" id="submit">
 
