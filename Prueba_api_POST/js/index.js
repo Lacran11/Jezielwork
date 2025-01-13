@@ -7,8 +7,7 @@ variable.addEventListener('submit', function (event){
 
     event.preventDefault();
 
-    alert('You submitted');
-    
+    //Asignacion de valores y creacion del payload
     const data = {
         nombre: document.getElementById("nombre").value,
         apellidoMat: document.getElementById("apellidomat").value,
@@ -19,48 +18,26 @@ variable.addEventListener('submit', function (event){
 
     console.log(JSON.stringify(data));
     
+    //Coneccion a la API y envio del payload
     fetch("http://192.168.1.155/v4/Portal/insertUserPruebas", {
         method: "POST",
         headers:{'Content-Type': 'application/json'},
         body: JSON.stringify(data)
     })
-    .then((response) => response.json())
+   
+    .then((response) => {
+        //Condicion que revisa si la entrega del payload se entrego o no
+        if (response.ok) {
+            alert("Informacion enviada correctamente, Estado: "+ response.status);
+            return
+        }
+        else{
+            alert("Informacion no enviada, Estado: "+ response.status); 
+        }
+        
+    })
+    
     .then((json) => console.log(json));
-        /* Ejemplo 2
-    // Get form values
-                const name = document.getElementById('name').value;
-                const surname = document.getElementById('surname').value;
-                const phoneNumber = document.getElementById('phone_number').value;
-
-                // Create payload
-                const data = {
-                    name: name,
-                    surname: surname,
-                    phone_number: phoneNumber
-                };
-
-                try {
-                    // Send data to the API
-                    const response = await fetch('https://api.example.com/endpoint', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(data) // Convert JS object to JSON string
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        alert('Data sent successfully: ' + JSON.stringify(result));
-                    } else {
-                        alert('Failed to send data: ' + response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error sending data: ' + error.message);
-                }
-
-    */
 
 });
 
