@@ -1,49 +1,60 @@
 let variable = document.getElementById('insertar')
 console.log(variable);
+const entradas = [
+    {
+        id:"nombre",
+        label:"Nombre",
+        regex: /^[a-zA-ZáéíóúÁÉÍÓÚÑñ]{1,255}$/,
+        error: "El nombre debe contener solo letras de a-z y A-Z Y acentos "
+    },
+    {
+        id:"apellidomat",
+        label:"Apellido Materno",
+        regex: /^[a-zA-ZáéíóúÁÉÍÓÚÑñ]{1,255}$/,
+        error: "El apellido materno debe contener solo letras de a-z y A-Z Y acentos"
+    },
+    {
+        id:"apellidopat",
+        label:"Apellido Paterno",
+        regex: /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{1,255}$/,
+        error: "El apellido paterno debe contener solo letras de a-z y A-Z Y acentos"
+    },
+    {
+        id:"correo",
+        label:"Correo Electronico",
+        regex: /^[a-zA-Z0-9._@-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+        error: "El correo debe contener el elemento '@' y '.'"
+    },
+    {
+        id:"celular",
+        label:"Numero de Celular",
+        regex: /^[0-9]{10}&/,
+        error: "Favor de ingresar 10 numeros"
+    },
+];
+entradas.forEach(element => {
+    const inpelement = document.getElementById(element.id);
+    if (inpelement) {
+        inpelement.addEventListener("input",(e)=>{
+            let value = e.target.value;
+            console.log(e.target.value);
+            e.target.value = value.replace(element.regex,"");//Reemplaza caracteres invalidos
+        })
+    }
+});
 
 
 variable.addEventListener('submit', function (event){
 
     event.preventDefault();
-    const entradas = [
-        {
-            id:"nombre",
-            label:"Nombre",
-            regex: "[a-zA-ZáéíóúÁÉÍÓÚ]{0,255}",
-            error: "El nombre debe contener solo letras de a-z y A-Z Y acentos "
-        },
-        {
-            id:"apellidomat",
-            label:"Apellido Materno",
-            regex: "[a-zA-ZáéíóúÁÉÍÓÚ]{0,255}",
-            error: "El apellido materno debe contener solo letras de a-z y A-Z Y acentos"
-        },
-        {
-            id:"apellidopat",
-            label:"Apellido Paterno",
-            regex: "[a-zA-ZáéíóúÁÉÍÓÚ]{0,255}",
-            error: "El apellido paterno debe contener solo letras de a-z y A-Z Y acentos"
-        },
-        {
-            id:"correo",
-            label:"Correo Electronico",
-            regex: "[a-zA-Z0-9._@-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}",
-            error: "El correo debe contener el elemento '@' y '.'"
-        },
-        {
-            id:"celular",
-            label:"Numero de Celular",
-            regex: "[0-9]{10}",
-            error: "El correo debe contener el elemento '@' y '.'"
-        },
-    ];
 
     let esverdadero = true;
     //Restaura el estilo
-    entradas.forEach(({id}) => {
-        const entrada = document.getElementById(id);
+    entradas.forEach((entradadata) => {
+        const entrada = document.getElementById(entradadata.id);
         entrada.style.border = "";
-        console.log(id);
+        console.log(entradadata.id);
+        entrada.nextElementSibling?.remove();//Quita el mensaje de error si hay uno
     });
 
     console.log(JSON.stringify(entradas));
@@ -59,10 +70,10 @@ variable.addEventListener('submit', function (event){
 
             if (!entradadata.regex.test(entrada.value.trim())) {
     
-                entradas.style.border = "3px solid red";//Le da color rojo al borde del input
+                entrada.style.border = "3px solid red";//Le da color rojo al borde del input
                 const errormsg = document.createElement("small");  
                 errormsg.style.color = "red";
-                errormsg.innerText = error;
+                errormsg.innerText = entradadata.error;
                 entrada.insertAdjacentElement("afterend",errormsg);
     
             }
