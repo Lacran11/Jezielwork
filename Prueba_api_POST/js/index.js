@@ -32,17 +32,18 @@ const entradas = [
         error: "Favor de ingresar 10 numeros"
     },
 ];
-entradas.forEach(element => {
-    const inpelement = document.getElementById(element.id);
+/*
+entradas.forEach(({id, regex}) => {
+    const inpelement = document.getElementById(id);
     if (inpelement) {
         inpelement.addEventListener("input",(e)=>{
             let value = e.target.value;
             console.log(e.target.value);
-            e.target.value = value.replace(element.regex,"");//Reemplaza caracteres invalidos
+            e.target.value = value.replace(regex,"");//Reemplaza caracteres invalidos
         })
     }
 });
-
+*/
 
 variable.addEventListener('submit', function (event){
 
