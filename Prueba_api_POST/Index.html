@@ -4,27 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-
+    <link rel="stylesheet" href="css/index.css">
     <form action=""></form>
     <title>Insercion POST   </title>
 </head>
 <body>
     
     <form action="" id="insertar">
-
         <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ]+"><br>
+        <input type="text" id="nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚÑñ]+">
+        <div id="errorNombre" class="error-message">Solo se permiten letras y acentos</div><br>
+
         <label for="apellidomat">Apellido Materno:</label><br>
-        <input type="text" id="apellidomat" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]+"><br>
+        <input type="text" id="apellidomat" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]+">
+        <div id="errorApellidomat" class="error-message">Solo se permiten letras y acentos</div><br>
+
         <label for="apellidopat">Apellido Paterno:</label><br>
-        <input type="text" id="apellidopat" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]+"><br>
+        <input type="text" id="apellidopat" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ]+">
+        <div id="errorApellidopat" class="error-message">Solo se permiten letras y acentos</div><br>
+
         <label for="correo">Correo Electronico</label><br>
-        <input type="email" id="correo" pattern="[a-zA-Z0-9._@-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}"><br>
+        <input type="email" id="correo" pattern="[a-zA-Z0-9._@-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}">
+        <div id="errorCorreo" class="error-message">Formato de correo inválido</div><br>
+
         <label for="celular">Numero de Celular</label><br>
-        <input type="number" id="celular" pattern="[0-9]+" maxlength="10"><br><br><br>
+        <input type="text" id="celular" maxlength="" pattern="[0-9]+">
+        <div id="errorCelular" class="error-message">Solo se permiten números</div><br><br>
 
         <input type="submit" id="submit">
-
     </form>
 
 

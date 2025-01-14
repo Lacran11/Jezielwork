@@ -1,0 +1,23 @@
+.error-message {
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
+    font-size: 12px;
+    margin-top: 2px;
+    display: none;
+}
+input {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+    transition: box-shadow 0.5s ease;
+}
+label{
+font-family: Arial;
+
+}
+input:hover,input:focus {
+    box-shadow: -2px 2px 5px 5px rgba(0,0,0,0.2);
+  }
+
