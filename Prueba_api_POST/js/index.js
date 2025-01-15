@@ -37,7 +37,8 @@ const entradas = [
         error: "Favor de ingresar 10 numeros"
     }
 ];
-//Limita la cantidad de datos ingresados en campo de Cellar
+
+//Limita la cantidad de datos ingresados en campo de Celular
 const input = document.getElementById('celular');
 input.addEventListener('input', function(event) {
     if (this.value.length > 10) {
@@ -56,27 +57,36 @@ entradas.forEach(element => {
             let newValue = value.replace(element.inputRegex, '');
             
             if (value !== newValue) {
+                /*Si el caracter es invalido se muestra
+                 un texto de error despues del campo*/
                 e.target.value = newValue;
                 errorElement.style.display = 'block';
             } else {
+                /*El elemento es valido y si ya se habia
+                un caracter invalido antes se oculta el
+                mejensaje de error */
                 errorElement.style.display = 'none';
             }
         });
     }
 });
 
+/*Recuperacion de datos ingresados en HTML
+a travez del uso del boton submit*/
 variable.addEventListener('submit', function(event) {
+
     event.preventDefault();
 
     let esValido = true;
 
-    // Restaura el estilo
+    /* Restaura el estilo cuando el campo es correcto despues de 
+    presionar nuevamente el boton submit*/
     entradas.forEach((entradaData) => {
         const entrada = document.getElementById(entradaData.id);
         entrada.style.border = "";
     });
 
-    // Validación al enviar
+    // Validación al enviarcon submit, se compara con el regex
     entradas.forEach((entradaData) => {
         const entrada = document.getElementById(entradaData.id);
         if (entrada) {
@@ -87,7 +97,8 @@ variable.addEventListener('submit', function(event) {
             }
         }
     });
-
+    /*En caso de que el campo ingresado tenga un caracter invalido
+    muestra un error y termina el script*/
     if (!esValido) {
         alert("Corrige todos los campos en rojo");
         return;
@@ -101,18 +112,6 @@ variable.addEventListener('submit', function(event) {
         correo: document.getElementById("correo").value,
         celular: document.getElementById("celular").value
     };
-
-    
-    /*
-    //Asignacion de valores y creacion del payload v2
-    const info = {};
-    entradas.forEach((entradaData)=>{
-        const ingreso = document.getElementById(entradaData.id);
-        if (ingreso) {
-            info[entradaData.id] = ingreso.value.trim()          
-        }
-    });
-    */
 
     // Conexión a la API y envío del payload
     fetch("http://192.168.1.155/v4/Portal/insertUserPruebas", {
