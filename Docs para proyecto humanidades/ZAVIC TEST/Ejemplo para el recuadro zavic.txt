@@ -1,0 +1,88 @@
+HTML:
+
+<table>
+    <tr>
+        <th></th><th>1</th><th>2</th><th>3</th><th>4</th>
+    </tr>
+    <tr>
+        <th>A</th>
+        <td><input type="radio" name="rA" class="rA c1" value="A1" /></td>
+        <td><input type="radio" name="rA" class="rA c2" value="A2" /></td>
+        <td><input type="radio" name="rA" class="rA c3" value="A3" /></td>
+        <td><input type="radio" name="rA" class="rA c4" value="A4" /></td>
+    </tr>
+    <tr>
+        <th>B</th>
+        <td><input type="radio" name="rB" class="rB c1" value="B1" /></td>
+        <td><input type="radio" name="rB" class="rB c2" value="B2" /></td>
+        <td><input type="radio" name="rB" class="rB c3" value="B3" /></td>
+        <td><input type="radio" name="rB" class="rB c4" value="B4" /></td>
+    </tr>
+    <tr>
+        <th>C</th>
+        <td><input type="radio" name="rC" class="rC c1" value="C1" /></td>
+        <td><input type="radio" name="rC" class="rC c2" value="C2" /></td>
+        <td><input type="radio" name="rC" class="rC c3" value="C3" /></td>
+        <td><input type="radio" name="rC" class="rC c4" value="C4" /></td>
+    </tr>
+    <tr>
+        <th>D</th>
+        <td><input type="radio" name="rD" class="rD c1" value="D1" /></td>
+        <td><input type="radio" name="rD" class="rD c2" value="D2" /></td>
+        <td><input type="radio" name="rD" class="rD c3" value="D3" /></td>
+        <td><input type="radio" name="rD" class="rD c4" value="D4" /></td>
+    </tr>
+</table>
+
+<!-- Botón para validar la selección -->
+<button id="validateBtn">Validar Selección</button>
+
+<!-- Mensaje de validación -->
+<div id="validationMessage" style="margin-top: 10px;"></div>
+
+CSS:
+
+table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000;
+}
+
+JAVASCRIPT:
+
+$('input[type="radio"]').change(function() {
+    var classes = $(this).prop('class').split(' '); // Obtener las clases del radio button
+    var colClass = classes.find(c => c.startsWith('c')); // Columna
+    var rowClass = classes.find(c => c.startsWith('r')); // Fila
+
+    // Si un radio button es seleccionado
+    var selectedValue = $(this).val();
+
+    if (selectedValue) {
+        // Desmarcar otros radio buttons en la misma fila
+        $('input.' + rowClass).not(this).prop('checked', false);
+
+        // Desmarcar otros radio buttons en la misma columna
+        $('input.' + colClass).not(this).prop('checked', false);
+    }
+});
+
+// Función para validar la selección
+$('#validateBtn').click(function() {
+    var selectedItems = 0;
+
+    // Contamos cuántos radio buttons están seleccionados
+    $('input[type="radio"]:checked').each(function() {
+        selectedItems++;
+    });
+
+    // Validación: Si hay exactamente 4 elementos seleccionados
+    if (selectedItems === 4) {
+        $('#validationMessage').text('¡Selección correcta!').css('color', 'green');
+    } else {
+        $('#validationMessage').text('Por favor, selecciona exactamente 4 elementos.').css('color', 'red');
+    }
+});
